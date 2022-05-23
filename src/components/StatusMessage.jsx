@@ -4,11 +4,22 @@ const StatusMessage = ({winner ,current}) => {
     const nomoveleft= current.board.every(el=>el !== null);
 
     return (
-        <h2>
-            {winner!== null && `Winner is ${winner}`}
-            {winner===null && !nomoveleft && `Next player is ${current.isXnext? 'X':'O'}`}
-            {winner===null && nomoveleft && 'X and 0 tied'}
-        </h2>
+        <div className='status-message'>
+            {winner!== null &&
+            <>
+            Winner is  <span className={winner === 'X'? 'text-green':'text-orange'}>{ winner }</span>
+            </>}
+            {winner===null && !nomoveleft && 
+            <>
+            Next player is <span className={current.isXnext? 'text-green': 'text-orange'}>{current.isXnext? 'X':'O'}
+            </span>
+            </>
+            }
+            {winner===null && nomoveleft && 
+            <>
+            <span className='text-green'> X </span> and <span className='text-orange'> O </span> tied
+            </>}
+        </div>
     )
 }
 
